@@ -22,6 +22,7 @@ let optionsContainer = document.getElementById('options-container');
 let refreshButton = document.getElementById('refresh-btn');
 let scoreContainer = document.getElementById('score-container');
 let usernameInput = document.getElementById('username');
+let notificationElement = document.getElementById('notification');
 
 // Initialize variables
 let currentQuestion = 0;
@@ -46,8 +47,21 @@ function showQuestion(questionIndex) {
 
 // Function to check user's answer
 function checkAnswer(userAnswer, correctAnswer) {
-  if (userAnswer === correctAnswer) {
-    score++; // Increase score if correct
+  let isCorrect = userAnswer === correctAnswer;
+  // Display notification
+  if (isCorrect) {
+    notificationElement.textContent = "Correct!";
+    notificationElement.style.color = "green";
+  } else {
+    notificationElement.textContent = "Wrong! The correct answer is: " + correctAnswer;
+    notificationElement.style.color = "red";
+  }
+  setTimeout(() => {
+    notificationElement.textContent = "";
+  }, 6000); // Clear notification after 2 seconds
+  // Increase score if correct
+  if (isCorrect) {
+    score++;
   }
   // Display score after each question
   scoreContainer.textContent = "Score: " + score;
@@ -75,6 +89,8 @@ refreshButton.addEventListener('click', () => {
   scoreContainer.textContent = "";
   // Clear previous username
   usernameInput.value = "";
+  // Clear notification
+  notificationElement.textContent = "";
   // Start quiz from the beginning
   showQuestion(currentQuestion);
 });
