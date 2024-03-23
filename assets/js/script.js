@@ -1,40 +1,42 @@
-const quizData = [
-    {
-      question: "What breed is this puppy?",
-      image: "assets/images/husky.jpg", 
-      options: ["Labrador Retriever", "German Shepherd", "Golden Retriever", "Beagle"],
-      answer: "Labrador Retriever"
-    },
-    {
-      question: "Identify the breed of this puppy.",
-      image: "assets/images/boxer.jpg",
-      options: ["Bulldog", "Poodle", "Boxer", "Dachshund"],
-      answer: "Poodle"
-    }
-    // Add more quiz questions here
-  ];
-const questionElement = document.getElementById('question');
-const imageElement = document.getElementById('puppy-image');
-const optionsContainer = document.getElementById('options-container');
-const refreshButton = document.getElementById('refresh-btn');
-const scoreElement = document.getElementById('score');
+let quizData = [
+  {
+    question: "What breed is this puppy?",
+    image: "assets/images/boxer.jpg",
+    options: ["Labrador Retriever", "German Shepherd", "Golden Retriever", "Beagle"],
+    answer: "Labrador Retriever"
+  },
+  {
+    question: "Identify the breed of this puppy.",
+    image: "assets/images/husky.jpg",
+    options: ["Bulldog", "Poodle", "Boxer", "Dachshund"],
+    answer: "Poodle"
+  }
+  // Add more quiz questions here
+];
+
+let questionElement = document.getElementById('question');
+let imageElement = document.getElementById('puppy-image');
+let optionsContainer = document.getElementById('options-container');
+let refreshButton = document.getElementById('refresh-btn');
+let scoreContainer = document.getElementById('score-container');
 
 let currentQuestion = 0;
 let score = 0;
 
 function showQuestion(questionIndex) {
-  const currentQuizItem = quizData[questionIndex];
+  let currentQuizItem = quizData[questionIndex];
   questionElement.textContent = currentQuizItem.question;
   imageElement.src = currentQuizItem.image;
   imageElement.alt = "Puppy Image";
   optionsContainer.innerHTML = "";
   currentQuizItem.options.forEach(option => {
-    const optionElement = document.createElement('div');
+    let optionElement = document.createElement('div');
     optionElement.textContent = option;
     optionElement.classList.add('option');
     optionElement.addEventListener('click', () => checkAnswer(option, currentQuizItem.answer));
     optionsContainer.appendChild(optionElement);
   });
+  scoreContainer.textContent = "Score: " + score; // Update score display
 }
 
 function checkAnswer(userAnswer, correctAnswer) {
@@ -53,13 +55,12 @@ function checkAnswer(userAnswer, correctAnswer) {
 }
 
 function endQuiz() {
-  scoreElement.textContent = "Final Score: " + score + " out of " + quizData.length;
+  scoreContainer.textContent = "Final Score: " + score; // Display final score
 }
 
 refreshButton.addEventListener('click', () => {
   currentQuestion = 0;
   score = 0;
-  scoreElement.textContent = "Score: 0";
   showQuestion(currentQuestion);
 });
 
