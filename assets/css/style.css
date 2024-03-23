@@ -47,3 +47,8 @@ img {
 #refresh-btn:hover {
   background-color: #45a049;
 }
+
+#score {
+  margin-top: 20px;
+  font-size: 24px;
+}
