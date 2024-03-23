@@ -21,10 +21,12 @@ let imageElement = document.getElementById('puppy-image');
 let optionsContainer = document.getElementById('options-container');
 let refreshButton = document.getElementById('refresh-btn');
 let scoreContainer = document.getElementById('score-container');
+let usernameInput = document.getElementById('username');
 
 // Initialize variables
 let currentQuestion = 0;
 let score = 0;
+let username = '';
 
 // Function to display current question
 function showQuestion(questionIndex) {
@@ -60,8 +62,8 @@ function checkAnswer(userAnswer, correctAnswer) {
 
 // Function to end the quiz
 function endQuiz() {
-  // Display final score
-  scoreContainer.textContent = "Final Score: " + score + " out of " + quizData.length;
+  // Display final score with username
+  scoreContainer.textContent = "Congratulations " + username + "! Your final score is: " + score + " out of " + quizData.length;
 }
 
 // Event listener for refresh button
@@ -71,8 +73,16 @@ refreshButton.addEventListener('click', () => {
   score = 0;
   // Clear previous score
   scoreContainer.textContent = "";
+  // Clear previous username
+  usernameInput.value = "";
   // Start quiz from the beginning
   showQuestion(currentQuestion);
+});
+
+// Event listener for username input
+usernameInput.addEventListener('input', () => {
+  // Update username when input changes
+  username = usernameInput.value;
 });
 
 // Show the first question when the page loads
