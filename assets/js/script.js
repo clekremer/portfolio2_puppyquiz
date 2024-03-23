@@ -1,3 +1,4 @@
+// Define quiz data
 let quizData = [
   {
     question: "What breed is this puppy?",
@@ -14,15 +15,18 @@ let quizData = [
   // Add more quiz questions here
 ];
 
+// Fetch necessary DOM elements
 let questionElement = document.getElementById('question');
 let imageElement = document.getElementById('puppy-image');
 let optionsContainer = document.getElementById('options-container');
 let refreshButton = document.getElementById('refresh-btn');
 let scoreContainer = document.getElementById('score-container');
 
+// Initialize variables
 let currentQuestion = 0;
 let score = 0;
 
+// Function to display current question
 function showQuestion(questionIndex) {
   let currentQuizItem = quizData[questionIndex];
   questionElement.textContent = currentQuizItem.question;
@@ -36,17 +40,17 @@ function showQuestion(questionIndex) {
     optionElement.addEventListener('click', () => checkAnswer(option, currentQuizItem.answer));
     optionsContainer.appendChild(optionElement);
   });
-  scoreContainer.textContent = "Score: " + score; // Update score display
 }
 
+// Function to check user's answer
 function checkAnswer(userAnswer, correctAnswer) {
   if (userAnswer === correctAnswer) {
-    score++;
-    alert("Correct!");
-  } else {
-    alert("Wrong! The correct answer is: " + correctAnswer);
+    score++; // Increase score if correct
   }
-  currentQuestion++;
+  // Display score after each question
+  scoreContainer.textContent = "Score: " + score;
+  currentQuestion++; // Move to the next question
+  // If there are more questions, display the next one; otherwise, end the quiz
   if (currentQuestion < quizData.length) {
     showQuestion(currentQuestion);
   } else {
@@ -54,14 +58,22 @@ function checkAnswer(userAnswer, correctAnswer) {
   }
 }
 
+// Function to end the quiz
 function endQuiz() {
-  scoreContainer.textContent = "Final Score: " + score; // Display final score
+  // Display final score
+  scoreContainer.textContent = "Final Score: " + score + " out of " + quizData.length;
 }
 
+// Event listener for refresh button
 refreshButton.addEventListener('click', () => {
+  // Reset quiz variables
   currentQuestion = 0;
   score = 0;
+  // Clear previous score
+  scoreContainer.textContent = "";
+  // Start quiz from the beginning
   showQuestion(currentQuestion);
 });
 
+// Show the first question when the page loads
 showQuestion(currentQuestion);
