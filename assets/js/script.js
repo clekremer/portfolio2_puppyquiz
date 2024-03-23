@@ -1,7 +1,7 @@
 const quizData = [
     {
       question: "What breed is this puppy?",
-      image: "https://via.placeholder.com/300",
+      image: "assets/images/husky.jpg", 
       options: ["Labrador Retriever", "German Shepherd", "Golden Retriever", "Beagle"],
       answer: "Labrador Retriever"
     },
@@ -53,6 +53,12 @@ const quizData = [
   
   function endQuiz() {
     alert("Quiz ended! Your score is: " + score + " out of " + quizData.length);
+  }
+
+  function refreshQuiz() {
+    currentQuestion = 0;
+    score = 0;
+    showQuestion(currentQuestion);
   }
   
   showQuestion(currentQuestion);
