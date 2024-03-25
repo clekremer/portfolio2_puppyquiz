@@ -16,13 +16,15 @@ let quizData = [
 ];
 
 // Fetch necessary DOM elements
+let popup = document.getElementById('popup');
+let usernameInput = document.getElementById('username');
+let startGameBtn = document.getElementById('start-game-btn');
+let quizContainer = document.getElementById('quiz-container');
 let questionElement = document.getElementById('question');
 let imageElement = document.getElementById('puppy-image');
 let optionsContainer = document.getElementById('options-container');
 let refreshButton = document.getElementById('refresh-btn');
 let scoreContainer = document.getElementById('score-container');
-let usernameInput = document.getElementById('username');
-let notificationElement = document.getElementById('notification');
 
 // Initialize variables
 let currentQuestion = 0;
@@ -50,15 +52,10 @@ function checkAnswer(userAnswer, correctAnswer) {
   let isCorrect = userAnswer === correctAnswer;
   // Display notification
   if (isCorrect) {
-    notificationElement.textContent = "Correct!";
-    notificationElement.style.color = "green";
+    alert("Correct!");
   } else {
-    notificationElement.textContent = "Wrong! The correct answer is: " + correctAnswer;
-    notificationElement.style.color = "red";
+    alert("Wrong! The correct answer is: " + correctAnswer);
   }
-  setTimeout(() => {
-    notificationElement.textContent = "";
-  }, 6000); // Clear notification after 2 seconds
   // Increase score if correct
   if (isCorrect) {
     score++;
@@ -80,6 +77,18 @@ function endQuiz() {
   scoreContainer.textContent = "Congratulations " + username + "! Your final score is: " + score + " out of " + quizData.length;
 }
 
+// Event listener for start game button
+startGameBtn.addEventListener('click', () => {
+  // Get username
+  username = usernameInput.value;
+  // Hide popup
+  popup.style.display = 'none';
+  // Show quiz container
+  quizContainer.style.display = 'block';
+  // Show the first question
+  showQuestion(currentQuestion);
+});
+
 // Event listener for refresh button
 refreshButton.addEventListener('click', () => {
   // Reset quiz variables
@@ -87,19 +96,11 @@ refreshButton.addEventListener('click', () => {
   score = 0;
   // Clear previous score
   scoreContainer.textContent = "";
-  // Clear previous username
-  usernameInput.value = "";
-  // Clear notification
-  notificationElement.textContent = "";
   // Start quiz from the beginning
   showQuestion(currentQuestion);
 });
 
-// Event listener for username input
-usernameInput.addEventListener('input', () => {
-  // Update username when input changes
-  username = usernameInput.value;
+// Show the popup when the page is loaded
+window.addEventListener('load', function() {
+  popup.style.display = 'block';
 });
-
-// Show the first question when the page loads
-showQuestion(currentQuestion);
