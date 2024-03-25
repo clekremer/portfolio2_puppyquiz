@@ -57,7 +57,6 @@ let quizData = [
 
   // Add more quiz questions here
 ];
-
 // Fetch necessary DOM elements
 let popup = document.getElementById('popup');
 let usernameInput = document.getElementById('username');
@@ -68,11 +67,13 @@ let imageElement = document.getElementById('puppy-image');
 let optionsContainer = document.getElementById('options-container');
 let refreshButton = document.getElementById('refresh-btn');
 let scoreContainer = document.getElementById('score-container');
+let nextButton = document.getElementById('next-btn'); // New
 
 // Initialize variables
 let currentQuestion = 0;
 let score = 0;
 let username = '';
+let answeredQuestions = new Set();
 
 // Function to display current question
 function showQuestion(questionIndex) {
@@ -88,30 +89,30 @@ function showQuestion(questionIndex) {
     optionElement.addEventListener('click', () => checkAnswer(option, currentQuizItem.answer));
     optionsContainer.appendChild(optionElement);
   });
+  nextButton.style.display = 'none'; // Hide Next button initially
 }
 
 // Function to check user's answer
 function checkAnswer(userAnswer, correctAnswer) {
+  if (answeredQuestions.has(currentQuestion)) return; // Check if question already answered
+  
   let isCorrect = userAnswer === correctAnswer;
   // Display notification
   if (isCorrect) {
     showNotification("Correct!", true);
+    score++; // Increase score if correct
   } else {
     showNotification("Wrong! The correct answer is: " + correctAnswer, false);
   }
-  // Increase score if correct
-  if (isCorrect) {
-    score++;
-  }
   // Display score after each question
   scoreContainer.textContent = "Score: " + score;
-  currentQuestion++; // Move to the next question
-  // If there are more questions, display the next one; otherwise, end the quiz
-  if (currentQuestion < quizData.length) {
-    showQuestion(currentQuestion);
-  } else {
-    endQuiz();
-  }
+  answeredQuestions.add(currentQuestion); // Add question to answered set
+
+  // Disable all options after the user selects one
+  optionsContainer.querySelectorAll('.option').forEach(option => {
+    option.removeEventListener('click', optionClickHandler); // Remove click event listener
+    option.style.pointerEvents = 'none'; // Disable pointer events
+  });
 }
 
 // Function to show notifications
@@ -129,8 +130,20 @@ function showNotification(message, isSuccess) {
     // Automatically remove notification after a certain time (e.g., 3 seconds)
     setTimeout(() => {
         notification.remove();
+        nextButton.style.display = 'block'; // Display Next button after notification disappears
     }, 3000);
 }
+
+// Event listener for Next button
+nextButton.addEventListener('click', () => {
+  currentQuestion++; // Move to the next question
+  // If there are more questions, display the next one; otherwise, end the quiz
+  if (currentQuestion < quizData.length) {
+    showQuestion(currentQuestion);
+  } else {
+    endQuiz();
+  }
+});
 
 // Function to end the quiz
 function endQuiz() {
@@ -155,6 +168,7 @@ refreshButton.addEventListener('click', () => {
   // Reset quiz variables
   currentQuestion = 0;
   score = 0;
+  answeredQuestions.clear(); // Clear answered questions set
   // Clear previous score
   scoreContainer.textContent = "";
   // Start quiz from the beginning
