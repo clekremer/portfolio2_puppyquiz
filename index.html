@@ -13,26 +13,27 @@
 </head>
 
 <body>
-
     <div class="popup" id="popup">
-        <div class="popup-content">
-          <h2>Welcome to Puppy Quiz!</h2>
-          <p>Please enter your name to start the game:</p>
-          <input type="text" id="username" class="input-field" placeholder="Enter your name">
-          <button id="start-game-btn">Start Game</button>
+        <div class="doghouse">
+            <div class="popup-content">
+                <h2>Welcome to Puppy Quiz!</h2>
+                <p>Please enter your name to start the game:</p>
+                <input type="text" id="username" class="input-field" placeholder="Enter your name">
+                <button id="start-game-btn" class="start-game-btn"><i class="fas fa-dog"></i> Start Game</button>
+            </div>
         </div>
-      </div>
-      
-      <div id="quiz-container" style="display: none;">
+    </div>
+
+    <div id="quiz-container" style="display: none;">
         <div id="question-container">
-          <div id="question" class="question"></div>
-          <img id="puppy-image" src="" alt="Puppy Image">
+            <div id="question" class="question"></div>
+            <img id="puppy-image" src="" alt="Puppy Image">
         </div>
         <div id="options-container" class="options"></div>
-        <button id="refresh-btn">Refresh Quiz</button>
+        <button id="refresh-btn" class="refresh-btn"><i class="fas fa-dog"></i> Refresh Quiz</button>
         <!-- Container to display score -->
         <div id="score-container"></div>
-      </div>
+    </div>
     <script src="assets/js/script.js"></script>
 </body>
 
