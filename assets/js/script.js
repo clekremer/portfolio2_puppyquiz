@@ -2,16 +2,60 @@
 let quizData = [
   {
     question: "What breed is this puppy?",
-    image: "assets/images/boxer.jpg",
+    image: "assets/images/shepherd.jpg",
     options: ["Labrador Retriever", "German Shepherd", "Golden Retriever", "Beagle"],
-    answer: "Labrador Retriever"
+    answer: "German Shepherd"
   },
   {
     question: "Identify the breed of this puppy.",
-    image: "assets/images/husky.jpg",
+    image: "assets/images/poodle.jpg",
     options: ["Bulldog", "Poodle", "Boxer", "Dachshund"],
     answer: "Poodle"
+  },
+
+  {
+    question: "Identify the breed of this puppy.",
+    image: "assets/images/boxer.jpg",
+    options: ["Bulldog", "Poodle", "Boxer", "Dachshund"],
+    answer: "Boxer"
+  },
+
+  
+  {
+    question: "Identify the breed of this puppy.",
+    image: "assets/images/beagle.jpg",
+    options: ["Border Collie", "Greyhound", "Beagle", "Fox Terrier"],
+    answer: "Beagle"
+  },
+
+  {
+    question: "Identify the breed of this puppy.",
+    image: "assets/images/labrador.jpg",
+    options: ["Border Collie", "Labrador", "Beagle", "Fox Terrier"],
+    answer: "Labrador"
+  },
+
+  {
+    question: "Identify the breed of this puppy.",
+    image: "assets/images/goldenretriever.jpg",
+    options: ["Golden Retriever", "Labrador", "Beagle", "Mops"],
+    answer: "Golden Retriever"
+  },
+
+  {
+    question: "Identify the breed of this puppy.",
+    image: "assets/images/husky.jpg",
+    options: ["Australian Shepherd", "Collie", "Boxer", "Husky"],
+    answer: "Husky"
+  },
+
+  {
+    question: "Identify the breed of this puppy.",
+    image: "assets/images/bulldog.jpg",
+    options: ["Bulldog", "French Bulldog", "Pitbull", "Chihuahua"],
+    answer: "Bulldog"
   }
+
   // Add more quiz questions here
 ];
 
