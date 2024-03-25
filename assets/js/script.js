@@ -78,6 +78,7 @@ let answeredQuestions = new Set();
 
 // Function to display current question
 function showQuestion(questionIndex) {
+  scoreContainer.textContent = "Score: 0"; // Set initial score to 0
   let currentQuizItem = quizData[questionIndex];
   questionElement.textContent = currentQuizItem.question;
   imageElement.src = currentQuizItem.image;
