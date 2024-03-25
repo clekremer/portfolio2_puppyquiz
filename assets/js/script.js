@@ -78,7 +78,6 @@ let answeredQuestions = new Set();
 
 // Function to display current question
 function showQuestion(questionIndex) {
-  scoreContainer.textContent = "Score: 0"; // Set initial score to 0
   let currentQuizItem = quizData[questionIndex];
   questionElement.textContent = currentQuizItem.question;
   imageElement.src = currentQuizItem.image;
@@ -139,7 +138,7 @@ function showNotification(message, isSuccess) {
     setTimeout(() => {
         notification.remove();
         nextButton.style.display = 'block'; // Display Next button after notification disappears
-    }, 3000);
+    }, 1500);
 }
 
 // Event listener for Next button
@@ -167,6 +166,9 @@ startGameBtn.addEventListener('click', () => {
   popup.style.display = 'none';
   // Show quiz container
   quizContainer.style.display = 'block';
+  // Initialize score to 0
+  score = 0;
+  scoreContainer.textContent = "Score: 0"; // Set initial score text content
   // Show the first question
   showQuestion(currentQuestion);
 });
