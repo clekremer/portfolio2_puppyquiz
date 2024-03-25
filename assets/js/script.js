@@ -20,7 +20,6 @@ let quizData = [
     answer: "Boxer"
   },
 
-  
   {
     question: "Identify the breed of this puppy.",
     image: "assets/images/beagle.jpg",
@@ -96,9 +95,9 @@ function checkAnswer(userAnswer, correctAnswer) {
   let isCorrect = userAnswer === correctAnswer;
   // Display notification
   if (isCorrect) {
-    alert("Correct!");
+    showNotification("Correct!", true);
   } else {
-    alert("Wrong! The correct answer is: " + correctAnswer);
+    showNotification("Wrong! The correct answer is: " + correctAnswer, false);
   }
   // Increase score if correct
   if (isCorrect) {
@@ -113,6 +112,24 @@ function checkAnswer(userAnswer, correctAnswer) {
   } else {
     endQuiz();
   }
+}
+
+// Function to show notifications
+function showNotification(message, isSuccess) {
+    const notificationContainer = document.getElementById('notification-container');
+    const notification = document.createElement('div');
+    notification.classList.add('notification');
+    if (isSuccess) {
+        notification.classList.add('success');
+    } else {
+        notification.classList.add('error');
+    }
+    notification.textContent = message;
+    notificationContainer.appendChild(notification);
+    // Automatically remove notification after a certain time (e.g., 3 seconds)
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
 }
 
 // Function to end the quiz
