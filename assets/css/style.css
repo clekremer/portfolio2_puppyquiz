@@ -125,3 +125,7 @@ img {
   font-weight: bold;
   margin-top: 20px;
 }
+
+#quiz-progress {
+    color: white; /* Add this line to make the text white */
+}

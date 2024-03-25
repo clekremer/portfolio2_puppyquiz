@@ -68,6 +68,7 @@ let optionsContainer = document.getElementById('options-container');
 let refreshButton = document.getElementById('refresh-btn');
 let scoreContainer = document.getElementById('score-container');
 let nextButton = document.getElementById('next-btn'); // New
+let quizProgress = document.getElementById('quiz-progress'); // New
 
 // Initialize variables
 let currentQuestion = 0;
@@ -90,6 +91,12 @@ function showQuestion(questionIndex) {
     optionsContainer.appendChild(optionElement);
   });
   nextButton.style.display = 'none'; // Hide Next button initially
+  updateQuizProgress(); // Update quiz progress
+}
+
+// Function to update quiz progress
+function updateQuizProgress() {
+  quizProgress.textContent = "Question " + (currentQuestion + 1) + " of " + quizData.length;
 }
 
 // Function to check user's answer
