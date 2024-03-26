@@ -121,8 +121,7 @@ img {
 
 #score-container,
 #quiz-progress,
-#refresh-btn,
-#next-btn {
+#refresh-btn {
   color: white;
   background-color: #4caf50;
   padding: 10px 20px;
@@ -135,8 +134,7 @@ img {
   white-space: nowrap;
 }
 
-#refresh-btn,
-#next-btn {
+#refresh-btn {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
