@@ -12,42 +12,36 @@ let quizData = [
     options: ["Bulldog", "Poodle", "Boxer", "Dachshund"],
     answer: "Poodle"
   },
-
   {
     question: "Identify the breed of this puppy.",
     image: "assets/images/boxer.jpg",
     options: ["Bulldog", "Poodle", "Boxer", "Dachshund"],
     answer: "Boxer"
   },
-
   {
     question: "Identify the breed of this puppy.",
     image: "assets/images/beagle.jpg",
     options: ["Border Collie", "Greyhound", "Beagle", "Fox Terrier"],
     answer: "Beagle"
   },
-
   {
     question: "Identify the breed of this puppy.",
     image: "assets/images/labrador.jpg",
     options: ["Border Collie", "Labrador", "Beagle", "Fox Terrier"],
     answer: "Labrador"
   },
-
   {
     question: "Identify the breed of this puppy.",
     image: "assets/images/goldenretriever.jpg",
     options: ["Golden Retriever", "Labrador", "Beagle", "Mops"],
     answer: "Golden Retriever"
   },
-
   {
     question: "Identify the breed of this puppy.",
     image: "assets/images/husky.jpg",
     options: ["Australian Shepherd", "Collie", "Boxer", "Husky"],
     answer: "Husky"
   },
-
   {
     question: "Identify the breed of this puppy.",
     image: "assets/images/bulldog.jpg",
@@ -67,7 +61,6 @@ let imageElement = document.getElementById('puppy-image');
 let optionsContainer = document.getElementById('options-container');
 let refreshButton = document.getElementById('refresh-btn');
 let scoreContainer = document.getElementById('score-container');
-let nextButton = document.getElementById('next-btn');
 let quizProgress = document.getElementById('quiz-progress');
 
 // Initialize variables
@@ -90,7 +83,6 @@ function showQuestion(questionIndex) {
     optionElement.addEventListener('click', () => checkAnswer(option, currentQuizItem.answer));
     optionsContainer.appendChild(optionElement);
   });
-  nextButton.style.display = 'none';
   updateQuizProgress();
 }
 
@@ -135,24 +127,19 @@ function showNotification(message, isSuccess, isEndOfQuiz = false) {
         if (isEndOfQuiz) {
             endQuiz();
         } else {
-            nextButton.style.display = 'block';
+            currentQuestion++; // Move to the next question
+            if (currentQuestion < quizData.length) {
+                showQuestion(currentQuestion);
+            } else {
+                showNotification("Congratulations " + username + "! Your final score is: " + score + " out of " + quizData.length, true, true);
+            }
         }
-    }, 1500);
+    }, 3000); // Show notification for 3 seconds
     
     if (isEndOfQuiz) {
         scoreContainer.textContent = "Congratulations " + username + "! Your final score is: " + score + " out of " + quizData.length;
     }
 }
-
-// Event listener for Next button
-nextButton.addEventListener('click', () => {
-  currentQuestion++;
-  if (currentQuestion < quizData.length) {
-    showQuestion(currentQuestion);
-  } else {
-    showNotification("Congratulations " + username + "! Your final score is: " + score + " out of " + quizData.length, true, true);
-  }
-});
 
 // Function to end the quiz
 function endQuiz() {
