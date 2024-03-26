@@ -54,9 +54,9 @@ let quizData = [
     options: ["Bulldog", "French Bulldog", "Pitbull", "Chihuahua"],
     answer: "Bulldog"
   }
-
   // Add more quiz questions here
 ];
+
 // Fetch necessary DOM elements
 let popup = document.getElementById('popup');
 let usernameInput = document.getElementById('username');
@@ -67,8 +67,8 @@ let imageElement = document.getElementById('puppy-image');
 let optionsContainer = document.getElementById('options-container');
 let refreshButton = document.getElementById('refresh-btn');
 let scoreContainer = document.getElementById('score-container');
-let nextButton = document.getElementById('next-btn'); // New
-let quizProgress = document.getElementById('quiz-progress'); // New
+let nextButton = document.getElementById('next-btn');
+let quizProgress = document.getElementById('quiz-progress');
 
 // Initialize variables
 let currentQuestion = 0;
@@ -90,8 +90,8 @@ function showQuestion(questionIndex) {
     optionElement.addEventListener('click', () => checkAnswer(option, currentQuizItem.answer));
     optionsContainer.appendChild(optionElement);
   });
-  nextButton.style.display = 'none'; // Hide Next button initially
-  updateQuizProgress(); // Update quiz progress
+  nextButton.style.display = 'none';
+  updateQuizProgress();
 }
 
 // Function to update quiz progress
@@ -101,29 +101,25 @@ function updateQuizProgress() {
 
 // Function to check user's answer
 function checkAnswer(userAnswer, correctAnswer) {
-  if (answeredQuestions.has(currentQuestion)) return; // Check if question already answered
-  
+  if (answeredQuestions.has(currentQuestion)) return;
+
   let isCorrect = userAnswer === correctAnswer;
-  // Display notification
   if (isCorrect) {
     showNotification("Correct!", true);
-    score++; // Increase score if correct
+    score++;
   } else {
     showNotification("Wrong! The correct answer is: " + correctAnswer, false);
   }
-  // Display score after each question
   scoreContainer.textContent = "Score: " + score;
-  answeredQuestions.add(currentQuestion); // Add question to answered set
-
-  // Disable all options after the user selects one
+  answeredQuestions.add(currentQuestion);
   optionsContainer.querySelectorAll('.option').forEach(option => {
-    option.removeEventListener('click', optionClickHandler); // Remove click event listener
-    option.style.pointerEvents = 'none'; // Disable pointer events
+    option.removeEventListener('click', optionClickHandler);
+    option.style.pointerEvents = 'none';
   });
 }
 
 // Function to show notifications
-function showNotification(message, isSuccess) {
+function showNotification(message, isSuccess, isEndOfQuiz = false) {
     const notificationContainer = document.getElementById('notification-container');
     const notification = document.createElement('div');
     notification.classList.add('notification');
@@ -134,54 +130,52 @@ function showNotification(message, isSuccess) {
     }
     notification.textContent = message;
     notificationContainer.appendChild(notification);
-    // Automatically remove notification after a certain time (e.g., 3 seconds)
     setTimeout(() => {
         notification.remove();
-        nextButton.style.display = 'block'; // Display Next button after notification disappears
+        if (isEndOfQuiz) {
+            endQuiz();
+        } else {
+            nextButton.style.display = 'block';
+        }
     }, 1500);
+    
+    if (isEndOfQuiz) {
+        scoreContainer.textContent = "Congratulations " + username + "! Your final score is: " + score + " out of " + quizData.length;
+    }
 }
 
 // Event listener for Next button
 nextButton.addEventListener('click', () => {
-  currentQuestion++; // Move to the next question
-  // If there are more questions, display the next one; otherwise, end the quiz
+  currentQuestion++;
   if (currentQuestion < quizData.length) {
     showQuestion(currentQuestion);
   } else {
-    endQuiz();
+    showNotification("Congratulations " + username + "! Your final score is: " + score + " out of " + quizData.length, true, true);
   }
 });
 
 // Function to end the quiz
 function endQuiz() {
-  // Display final score with username
-  scoreContainer.textContent = "Congratulations " + username + "! Your final score is: " + score + " out of " + quizData.length;
+  popup.style.display = 'block';
+  quizContainer.style.display = 'none';
 }
 
 // Event listener for start game button
 startGameBtn.addEventListener('click', () => {
-  // Get username
   username = usernameInput.value;
-  // Hide popup
   popup.style.display = 'none';
-  // Show quiz container
   quizContainer.style.display = 'block';
-  // Initialize score to 0
   score = 0;
-  scoreContainer.textContent = "Score: 0"; // Set initial score text content
-  // Show the first question
+  scoreContainer.textContent = "Score: 0";
   showQuestion(currentQuestion);
 });
 
 // Event listener for refresh button
 refreshButton.addEventListener('click', () => {
-  // Reset quiz variables
   currentQuestion = 0;
   score = 0;
-  answeredQuestions.clear(); // Clear answered questions set
-  // Clear previous score
+  answeredQuestions.clear();
   scoreContainer.textContent = "";
-  // Start quiz from the beginning
   showQuestion(currentQuestion);
 });
 
