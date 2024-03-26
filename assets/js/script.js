@@ -111,7 +111,7 @@ function checkAnswer(userAnswer, correctAnswer) {
 }
 
 // Function to show notifications
-function showNotification(message, isSuccess, isEndOfQuiz = false) {
+function showNotification(message, isSuccess) {
     const notificationContainer = document.getElementById('notification-container');
     const notification = document.createElement('div');
     notification.classList.add('notification');
@@ -124,27 +124,18 @@ function showNotification(message, isSuccess, isEndOfQuiz = false) {
     notificationContainer.appendChild(notification);
     setTimeout(() => {
         notification.remove();
-        if (isEndOfQuiz) {
-            endQuiz();
-        } else {
+        if (currentQuestion < quizData.length - 1) {
             currentQuestion++; // Move to the next question
-            if (currentQuestion < quizData.length) {
-                showQuestion(currentQuestion);
-            } else {
-                showNotification("Congratulations " + username + "! Your final score is: " + score + " out of " + quizData.length, true, true);
-            }
+            showQuestion(currentQuestion);
+        } else {
+            endQuiz(); // End the quiz
         }
     }, 3000); // Show notification for 3 seconds
-    
-    if (isEndOfQuiz) {
-        scoreContainer.textContent = "Congratulations " + username + "! Your final score is: " + score + " out of " + quizData.length;
-    }
 }
 
 // Function to end the quiz
 function endQuiz() {
-  popup.style.display = 'block';
-  quizContainer.style.display = 'none';
+  scoreContainer.textContent = "Congratulations " + username + "! Your final score is: " + score + " out of " + quizData.length;
 }
 
 // Event listener for start game button
