@@ -110,6 +110,8 @@ function checkAnswer(userAnswer, correctAnswer) {
   });
 }
 
+
+
 // Function to show notifications
 function showNotification(message, isSuccess) {
     const notificationContainer = document.getElementById('notification-container');
@@ -130,13 +132,17 @@ function showNotification(message, isSuccess) {
         } else {
             endQuiz(); // End the quiz
         }
-    }, 3000); // Show notification for 3 seconds
+    }, 1000); // Show notification for 3 seconds
 }
 
 // Function to end the quiz
 function endQuiz() {
-  scoreContainer.textContent = "Congratulations " + username + "! Your final score is: " + score + " out of " + quizData.length;
-  refreshButton.style.display = 'block'; // Show the refresh button
+  const notificationContainer = document.getElementById('notification-container');
+  if (notificationContainer) {
+    notificationContainer.textContent = "Congratulations " + username + "! Your final score is: " + score + " out of " + quizData.length;
+    notificationContainer.classList.add('end-game'); // Add the end-game class
+    refreshButton.style.display = 'block'; // Show the refresh button
+  }
 }
 
 // Event listener for start game button
@@ -155,6 +161,12 @@ refreshButton.addEventListener('click', () => {
   score = 0;
   answeredQuestions.clear();
   scoreContainer.textContent = "";
+  // Clear the notification container
+  const notificationContainer = document.getElementById('notification-container');
+  if (notificationContainer) {
+    notificationContainer.textContent = "";
+    notificationContainer.classList.remove('end-game'); // Remove the end-game class
+  }
   showQuestion(currentQuestion);
 });
 
