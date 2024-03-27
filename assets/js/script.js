@@ -51,6 +51,18 @@ let quizData = [
   // Add more quiz questions here
 ];
 
+// Function to shuffle an array
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Shuffle the quiz data array
+shuffleArray(quizData);
+
 // Fetch necessary DOM elements
 let popup = document.getElementById('popup');
 let usernameInput = document.getElementById('username');
@@ -110,8 +122,6 @@ function checkAnswer(userAnswer, correctAnswer) {
   });
 }
 
-
-
 // Function to show notifications
 function showNotification(message, isSuccess) {
     const notificationContainer = document.getElementById('notification-container');
@@ -167,6 +177,8 @@ refreshButton.addEventListener('click', () => {
     notificationContainer.textContent = "";
     notificationContainer.classList.remove('end-game'); // Remove the end-game class
   }
+  // Shuffle the quiz data array again
+  shuffleArray(quizData);
   showQuestion(currentQuestion);
 });
 
