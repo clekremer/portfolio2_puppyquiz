@@ -47,6 +47,36 @@ let quizData = [
     image: "assets/images/bulldog.jpg",
     options: ["Bulldog", "French Bulldog", "Pitbull", "Chihuahua"],
     answer: "Bulldog"
+  },
+  {
+    question: "What breed is this puppy?",
+    image: "assets/images/crossbreed_rocky.png",
+    options: ["Crossbreed", "French Bulldog", "Dalmatian", "Chihuahua"],
+    answer: "Crossbreed"
+  },
+  {
+    question: "What breed is this puppy?",
+    image: "assets/images/marshall_dalmatian.png",
+    options: ["Dalmatian", "Cockapoo", "Jack Russell Terrier", "Rhodesian Ridgeback"],
+    answer: "Dalmatian"
+  },
+  {
+    question: "What breed is this puppy?",
+    image: "assets/images/rubble_bulldog.png",
+    options: ["Bulldog", "Rottweiler", "Scotch Terrier", "Bernese Mountain Dog"],
+    answer: "Bulldog"
+  },
+  {
+    question: "What breed is this puppy?",
+    image: "assets/images/skye_cockapoo.png",
+    options: ["Shih Tzu", "Labradoodle", "Yorkshire Terrier", "Cockapoo"],
+    answer: "Cockapoo"
+  },
+  {
+    question: "What breed is this puppy?",
+    image: "assets/images/zuma_labrador.png",
+    options: ["Golden Retriever", "Labrador", "Weimaraner", "Doberman"],
+    answer: "Labrador"
   }
   // Add more quiz questions here
 ];
@@ -174,7 +204,7 @@ refreshButton.addEventListener('click', () => {
   currentQuestion = 0;
   score = 0;
   answeredQuestions.clear();
-  scoreContainer.textContent = "";
+  scoreContainer.textContent = "Score: 0"; 
   notificationContainer.textContent = ""; // Clear the notification container
   notificationContainer.classList.remove('end-game'); // Remove the end-game class
   quizEnded = false;
