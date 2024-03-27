@@ -140,10 +140,6 @@ img {
 }
 
 
-To style the end of game message, you can add CSS rules to customize its appearance. Here's how you can modify the CSS code to style the end of game message:
-
-css
-Copy code
 .notification {
   margin-bottom: 10px;
   padding: 10px;

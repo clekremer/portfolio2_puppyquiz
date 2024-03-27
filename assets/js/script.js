@@ -51,18 +51,6 @@ let quizData = [
   // Add more quiz questions here
 ];
 
-// Function to shuffle an array
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
-
-// Shuffle the quiz data array
-shuffleArray(quizData);
-
 // Fetch necessary DOM elements
 let popup = document.getElementById('popup');
 let usernameInput = document.getElementById('username');
@@ -74,12 +62,29 @@ let optionsContainer = document.getElementById('options-container');
 let refreshButton = document.getElementById('refresh-btn');
 let scoreContainer = document.getElementById('score-container');
 let quizProgress = document.getElementById('quiz-progress');
+let notificationContainer = document.getElementById('notification-container');
 
 // Initialize variables
 let currentQuestion = 0;
 let score = 0;
 let username = '';
 let answeredQuestions = new Set();
+let quizEnded = false;
+
+// Function to shuffle the quiz questions
+function shuffleQuizQuestions() {
+  for (let i = quizData.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [quizData[i], quizData[j]] = [quizData[j], quizData[i]];
+  }
+}
+
+// Function to use a maximum of 5 questions
+function useMaxFiveQuestions() {
+  if (quizData.length > 5) {
+    quizData = quizData.slice(0, 5);
+  }
+}
 
 // Function to display current question
 function showQuestion(questionIndex) {
@@ -105,7 +110,7 @@ function updateQuizProgress() {
 
 // Function to check user's answer
 function checkAnswer(userAnswer, correctAnswer) {
-  if (answeredQuestions.has(currentQuestion)) return;
+  if (quizEnded || answeredQuestions.has(currentQuestion)) return;
 
   let isCorrect = userAnswer === correctAnswer;
   if (isCorrect) {
@@ -124,35 +129,32 @@ function checkAnswer(userAnswer, correctAnswer) {
 
 // Function to show notifications
 function showNotification(message, isSuccess) {
-    const notificationContainer = document.getElementById('notification-container');
-    const notification = document.createElement('div');
-    notification.classList.add('notification');
-    if (isSuccess) {
-        notification.classList.add('success');
+  const notification = document.createElement('div');
+  notification.classList.add('notification');
+  if (isSuccess) {
+    notification.classList.add('success');
+  } else {
+    notification.classList.add('error');
+  }
+  notification.textContent = message;
+  notificationContainer.appendChild(notification);
+  setTimeout(() => {
+    notification.remove();
+    if (currentQuestion < quizData.length - 1) {
+      currentQuestion++; // Move to the next question
+      showQuestion(currentQuestion);
     } else {
-        notification.classList.add('error');
+      endQuiz(); // End the quiz
     }
-    notification.textContent = message;
-    notificationContainer.appendChild(notification);
-    setTimeout(() => {
-        notification.remove();
-        if (currentQuestion < quizData.length - 1) {
-            currentQuestion++; // Move to the next question
-            showQuestion(currentQuestion);
-        } else {
-            endQuiz(); // End the quiz
-        }
-    }, 1000); // Show notification for 3 seconds
+  }, 1000); // Show notification for 3 seconds
 }
 
 // Function to end the quiz
 function endQuiz() {
-  const notificationContainer = document.getElementById('notification-container');
-  if (notificationContainer) {
-    notificationContainer.textContent = "Congratulations " + username + "! Your final score is: " + score + " out of " + quizData.length;
-    notificationContainer.classList.add('end-game'); // Add the end-game class
-    refreshButton.style.display = 'block'; // Show the refresh button
-  }
+  notificationContainer.textContent = "Congratulations " + username + "! Your final score is: " + score + " out of " + quizData.length;
+  notificationContainer.classList.add('end-game'); // Add the end-game class
+  refreshButton.style.display = 'block'; // Show the refresh button
+  quizEnded = true;
 }
 
 // Event listener for start game button
@@ -162,6 +164,8 @@ startGameBtn.addEventListener('click', () => {
   quizContainer.style.display = 'block';
   score = 0;
   scoreContainer.textContent = "Score: 0";
+  shuffleQuizQuestions();
+  useMaxFiveQuestions();
   showQuestion(currentQuestion);
 });
 
@@ -171,14 +175,11 @@ refreshButton.addEventListener('click', () => {
   score = 0;
   answeredQuestions.clear();
   scoreContainer.textContent = "";
-  // Clear the notification container
-  const notificationContainer = document.getElementById('notification-container');
-  if (notificationContainer) {
-    notificationContainer.textContent = "";
-    notificationContainer.classList.remove('end-game'); // Remove the end-game class
-  }
-  // Shuffle the quiz data array again
-  shuffleArray(quizData);
+  notificationContainer.textContent = ""; // Clear the notification container
+  notificationContainer.classList.remove('end-game'); // Remove the end-game class
+  quizEnded = false;
+  shuffleQuizQuestions();
+  useMaxFiveQuestions();
   showQuestion(currentQuestion);
 });
 
