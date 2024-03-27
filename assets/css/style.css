@@ -163,3 +163,23 @@ img {
   padding: 10px; /* Add padding */
   border-radius: 10px; /* Add border radius */
 }
+
+/* Media query for mobile phones */
+@media only screen and (max-width: 425px) {
+
+  .question {
+    font-size: 24px; 
+  }
+  
+  #score-container, #quiz-progress, #refresh-btn {
+    margin: 5px 5px;
+  }
+
+.controls-container {
+  flex-wrap: wrap;
+}
+  .option {
+    padding: 8px 16px; 
+  }
+  
+}
