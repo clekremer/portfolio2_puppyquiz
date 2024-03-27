@@ -7,43 +7,43 @@ let quizData = [
     answer: "German Shepherd"
   },
   {
-    question: "Identify the breed of this puppy.",
+    question: "What breed is this puppy?",
     image: "assets/images/poodle.jpg",
     options: ["Bulldog", "Poodle", "Boxer", "Dachshund"],
     answer: "Poodle"
   },
   {
-    question: "Identify the breed of this puppy.",
+    question: "What breed is this puppy?",
     image: "assets/images/boxer.jpg",
     options: ["Bulldog", "Poodle", "Boxer", "Dachshund"],
     answer: "Boxer"
   },
   {
-    question: "Identify the breed of this puppy.",
+    question: "What breed is this puppy?",
     image: "assets/images/beagle.jpg",
     options: ["Border Collie", "Greyhound", "Beagle", "Fox Terrier"],
     answer: "Beagle"
   },
   {
-    question: "Identify the breed of this puppy.",
+    question: "What breed is this puppy?",
     image: "assets/images/labrador.jpg",
     options: ["Border Collie", "Labrador", "Beagle", "Fox Terrier"],
     answer: "Labrador"
   },
   {
-    question: "Identify the breed of this puppy.",
+    question: "What breed is this puppy?",
     image: "assets/images/goldenretriever.jpg",
     options: ["Golden Retriever", "Labrador", "Beagle", "Mops"],
     answer: "Golden Retriever"
   },
   {
-    question: "Identify the breed of this puppy.",
+    question: "What breed is this puppy?",
     image: "assets/images/husky.jpg",
     options: ["Australian Shepherd", "Collie", "Boxer", "Husky"],
     answer: "Husky"
   },
   {
-    question: "Identify the breed of this puppy.",
+    question: "What breed is this puppy?",
     image: "assets/images/bulldog.jpg",
     options: ["Bulldog", "French Bulldog", "Pitbull", "Chihuahua"],
     answer: "Bulldog"
@@ -136,6 +136,7 @@ function showNotification(message, isSuccess) {
 // Function to end the quiz
 function endQuiz() {
   scoreContainer.textContent = "Congratulations " + username + "! Your final score is: " + score + " out of " + quizData.length;
+  refreshButton.style.display = 'block'; // Show the refresh button
 }
 
 // Event listener for start game button
