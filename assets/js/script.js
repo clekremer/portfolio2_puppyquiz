@@ -154,7 +154,6 @@ function checkAnswer(userAnswer, correctAnswer) {
   scoreContainer.textContent = "Score: " + score;
   answeredQuestions.add(currentQuestion);
   optionsContainer.querySelectorAll('.option').forEach(option => {
-    option.removeEventListener('click', optionClickHandler);
     option.style.pointerEvents = 'none';
   });
 }
