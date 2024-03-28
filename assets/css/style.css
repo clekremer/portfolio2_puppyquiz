@@ -12,9 +12,10 @@
 
 body {
   font-family: "Fuzzy Bubbles", sans-serif;
-  background-color: rgba(189, 184, 80, 0.95);
+  /*background-color: rgba(189, 184, 80, 0.95);*/
   background: url("../images/background.jpg") no-repeat center center/cover;
   background-size: cover;
+  min-height: 100vh;
 }
 
 img {
@@ -33,6 +34,7 @@ img {
   text-align: center;
   border-radius: 5px;
   z-index: 1;
+  overflow-y: hidden;
 }
 
 .question {

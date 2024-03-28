@@ -97,7 +97,7 @@ let notificationContainer = document.getElementById('notification-container');
 // Initialize variables
 let currentQuestion = 0;
 let score = 0;
-let username = '';
+let username = '';git
 let answeredQuestions = new Set();
 let quizEnded = false;
 
