@@ -101,6 +101,8 @@ let username = '';
 let answeredQuestions = new Set();
 let quizEnded = false;
 
+
+
 // Function to shuffle the quiz questions
 function shuffleQuizQuestions() {
   for (let i = quizData.length - 1; i > 0; i--) {
@@ -199,15 +201,103 @@ startGameBtn.addEventListener('click', () => {
   showQuestion(currentQuestion);
 });
 
+
+
+
 // Event listener for refresh button
 refreshButton.addEventListener('click', () => {
+
+
+  quizData = [
+    {
+      question: "What breed is this puppy?",
+      image: "assets/images/shepherd.jpg",
+      options: ["Labrador Retriever", "German Shepherd", "Golden Retriever", "Beagle"],
+      answer: "German Shepherd"
+    },
+    {
+      question: "What breed is this puppy?",
+      image: "assets/images/poodle.jpg",
+      options: ["Bulldog", "Poodle", "Boxer", "Dachshund"],
+      answer: "Poodle"
+    },
+    {
+      question: "What breed is this puppy?",
+      image: "assets/images/boxer.jpg",
+      options: ["Bulldog", "Poodle", "Boxer", "Dachshund"],
+      answer: "Boxer"
+    },
+    {
+      question: "What breed is this puppy?",
+      image: "assets/images/beagle.jpg",
+      options: ["Border Collie", "Greyhound", "Beagle", "Fox Terrier"],
+      answer: "Beagle"
+    },
+    {
+      question: "What breed is this puppy?",
+      image: "assets/images/labrador.jpg",
+      options: ["Border Collie", "Labrador", "Beagle", "Fox Terrier"],
+      answer: "Labrador"
+    },
+    {
+      question: "What breed is this puppy?",
+      image: "assets/images/goldenretriever.jpg",
+      options: ["Golden Retriever", "Labrador", "Beagle", "Mops"],
+      answer: "Golden Retriever"
+    },
+    {
+      question: "What breed is this puppy?",
+      image: "assets/images/husky.jpg",
+      options: ["Australian Shepherd", "Collie", "Boxer", "Husky"],
+      answer: "Husky"
+    },
+    {
+      question: "What breed is this puppy?",
+      image: "assets/images/bulldog.jpg",
+      options: ["Bulldog", "French Bulldog", "Pitbull", "Chihuahua"],
+      answer: "Bulldog"
+    },
+    {
+      question: "What breed is this puppy?",
+      image: "assets/images/crossbreed_rocky.png",
+      options: ["Crossbreed", "French Bulldog", "Dalmatian", "Chihuahua"],
+      answer: "Crossbreed"
+    },
+    {
+      question: "What breed is this puppy?",
+      image: "assets/images/marshall_dalmatian.png",
+      options: ["Dalmatian", "Cockapoo", "Jack Russell Terrier", "Rhodesian Ridgeback"],
+      answer: "Dalmatian"
+    },
+    {
+      question: "What breed is this puppy?",
+      image: "assets/images/rubble_bulldog.png",
+      options: ["Bulldog", "Rottweiler", "Scotch Terrier", "Bernese Mountain Dog"],
+      answer: "Bulldog"
+    },
+    {
+      question: "What breed is this puppy?",
+      image: "assets/images/skye_cockapoo.png",
+      options: ["Shih Tzu", "Labradoodle", "Yorkshire Terrier", "Cockapoo"],
+      answer: "Cockapoo"
+    },
+    {
+      question: "What breed is this puppy?",
+      image: "assets/images/zuma_labrador.png",
+      options: ["Golden Retriever", "Labrador", "Weimaraner", "Doberman"],
+      answer: "Labrador"
+    }
+    // Add more quiz questions here
+  ];
   currentQuestion = 0;
   score = 0;
   answeredQuestions.clear();
   scoreContainer.textContent = "Score: 0"; 
+  
   notificationContainer.textContent = ""; // Clear the notification container
   notificationContainer.classList.remove('end-game'); // Remove the end-game class
   quizEnded = false;
+  
   shuffleQuizQuestions();
   useMaxFiveQuestions();
   showQuestion(currentQuestion);
