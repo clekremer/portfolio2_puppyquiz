@@ -73,6 +73,7 @@ __Notifications area__
     1. Correct answer notification
     2. Wrong answer notification
     3. End of game notification 
+  - notifications disappear automatically after 2 sec
 
 ![Notification area](docs/readme_images/correctanswer.PNG)
 ![Notification area](docs/readme_images/wronganswer.PNG)
@@ -82,7 +83,7 @@ __Controls area__
  
   -  The controls area consists of 3 elements:
       - actual score
-      - answered questions of total questions
+      - answered questions of total questions (should give overview about quiz progress)
       - button to restart the quiz
  
  ![Controls area](docs/readme_images/controlsarea.PNG)
