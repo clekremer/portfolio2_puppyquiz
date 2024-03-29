@@ -48,17 +48,15 @@ __Popup__
 - The popup is loaded by refreshing the page
 - The quiz is reseted and starting by refreshing the page
 
-![Nav Bar](docs/readme_images/NavBar.PNG)
+![Popup](docs/readme_images/popup.PNG)
 
 
 __Question area__
-  - This page gives the visitor an overview about relevant aspects of the osteothic practice, such as:
-    - What they can expect from an Osteopathic treamtent?
-    - What will happen in the practice?
-    - Prices and healtcare insurance information
-  - The images should give the visitor a feeling that he will get a warm and careful treatment from this Osteopathy Practice
+  - In the question area of the quiz the following elements are displayed:
+    - The question "What breed is this puppy?"
+    - The image of the puppy for which the user should guess the correct breed
 
-![Landing Page](docs/readme_images/landingpage.PNG)
+![Question area](docs/readme_images/questionarea.PNG)
 
 
 __Answer options area__
