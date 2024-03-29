@@ -111,10 +111,10 @@ function shuffleQuizQuestions() {
   }
 }
 
-// Function to use a maximum of 5 questions
+// Function to use a maximum of 10 questions
 function useMaxFiveQuestions() {
-  if (quizData.length > 5) {
-    quizData = quizData.slice(0, 5);
+  if (quizData.length > 10) {
+    quizData = quizData.slice(0, 10);
   }
 }
 
@@ -177,7 +177,7 @@ function showNotification(message, isSuccess) {
     } else {
       endQuiz(); // End the quiz
     }
-  }, 5000); // Show notification for 3 seconds
+  }, 2000); // Show notification for 2 seconds
 }
 
 // Function to end the quiz
