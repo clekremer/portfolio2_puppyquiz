@@ -61,23 +61,32 @@ __Question area__
 
 __Answer options area__
 
-  - This page gives information about the methods and skills of the therpist 
-  - It should give a first impression to the visitor what kind of person and treatments they can expect
+  - In this area 4 answer options are displayed as buttons
+  - For each question the user can click one time on one button
 
-![Therapist Page](docs/readme_images/therapist.PNG) 
+![Answer area](docs/readme_images/answerarea.PNG) 
 
 
 
 __Notifications area__
-  - Interested visitor can book an appointment or ask any question to the therapist
+  - In this area the notifications are displayed as feedback to answers given by the user
+  - There are 3 notifications:
+    1. Correct answer notification
+    2. Wrong answer notification
+    3. End of game notification 
 
-![Appointment Form](docs/readme_images/appointment.PNG)
+![Notification area](docs/readme_images/correctanswer.PNG)
+![Notification area](docs/readme_images/wronganswer.PNG)
+![Notification area](docs/readme_images/endofgamemessage.PNG)
 
 __Controls area__
  
- - On each page we provide links to social media where more information can be found
+  -  The controls area consists of 3 elements:
+      - actual score
+      - answered questions of total questions
+      - button to restart the quiz
  
- ![Footer](docs/readme_images/footer.PNG)
+ ![Controls area](docs/readme_images/controlsarea.PNG)
 
 ## Testing
 

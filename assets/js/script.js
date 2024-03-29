@@ -177,7 +177,7 @@ function showNotification(message, isSuccess) {
     } else {
       endQuiz(); // End the quiz
     }
-  }, 1000); // Show notification for 3 seconds
+  }, 5000); // Show notification for 3 seconds
 }
 
 // Function to end the quiz
