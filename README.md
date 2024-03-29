@@ -1,6 +1,6 @@
 # Puppy Quiz - What breed is this puppy?
 
-This site is quiz for children, who like puppies. The user should identify the breed of the dog based on the puppy image. For each correct answer he earns a score. The quiz can be repeated by the same user multiple times. Each time a random sequence of question is generated. 
+This site is a quiz for children, who like puppies. The user should identify the breed of the dog based on the puppy image. For each correct answer he earns a score. The quiz can be repeated by the same user multiple times. Each time a random sequence of question is generated. 
 
 ![Puppy Quiz Responsive Mockup](docs/readme_images/responsive_mockup.PNG)
 
@@ -43,11 +43,10 @@ Wireframes were created with Balsamiq.
 
 __Popup__
 
-- The navigation bar includes links to the sections of the homepage (Intro, Treatment, Practice and Prices) and links to other pages of the website: therapist and appointment form 
-- The navigation is responsive and changes in layout and functionality according to the screen size. Large screens are shown in a horizontel navigation bar. Mobile phone and tablets have toggle icon to expand the vertical menu. 
-- For large and vertical mobile screens the navigation bar has a fixed position so it stays visible for the user when he navigates through the website. For mobile screens in landscape view it is not fixed, because to focus here is more on the readability of the content.
-
-
+- The Popup is the starting screen for the quiz
+- It contains the instructions for the quiz, a input field the enter the name of the player and the start game game button
+- The popup is loaded by refreshing the page
+- The quiz is reseted and starting by refreshing the page
 
 ![Nav Bar](docs/readme_images/NavBar.PNG)
 

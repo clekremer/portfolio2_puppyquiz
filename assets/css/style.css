@@ -95,6 +95,11 @@ img {
   text-align: center;
 }
 
+.popup-content ol {
+  background-color: #dc820d;
+  text-align: left;
+}
+
 .input-field {
   margin-bottom: 10px;
 }
